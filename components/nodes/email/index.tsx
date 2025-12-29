@@ -132,3 +132,5 @@ export const EmailNode = ({ id, data, type }: EmailNodeProps) => {
     </NodeLayout>
   );
 };
+
+

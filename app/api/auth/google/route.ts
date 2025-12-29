@@ -29,9 +29,11 @@ export async function GET(request: Request) {
     );
   }
 
-  // Build the callback URL
-  const origin = new URL(request.url).origin;
+  // Use NEXT_PUBLIC_APP_URL if available (for tunnels/proxies), otherwise use request origin
+  const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(request.url).origin;
   const callbackUrl = `${origin}/api/auth/google/callback`;
+  
+  console.log("Google OAuth callback URL:", callbackUrl);
   
   // Store redirect path in state (you could also use a session/cookie)
   const state = Buffer.from(JSON.stringify({ redirect: redirectPath })).toString("base64url");
@@ -48,3 +50,5 @@ export async function GET(request: Request) {
 
   return NextResponse.redirect(`${GOOGLE_AUTH_URL}?${params.toString()}`);
 }
+
+

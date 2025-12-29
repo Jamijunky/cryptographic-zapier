@@ -1771,3 +1771,5 @@ export const NovitaIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+

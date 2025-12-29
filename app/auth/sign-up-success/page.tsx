@@ -31,3 +31,5 @@ const SignUpSuccessPage = () => (
 );
 
 export default SignUpSuccessPage;
+
+

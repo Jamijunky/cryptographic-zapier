@@ -10,7 +10,7 @@ export const Header = async () => {
     <header className="flex items-center justify-between px-8">
       <Link className="flex items-center gap-2" href="/">
         <Logo className="h-6 w-auto" />
-        <span className="font-medium text-xl tracking-tight">Veriflow</span>
+        <span className="font-medium text-xl tracking-tight">zynthex</span>
       </Link>
       <div className="flex items-center gap-2">
         {user ? (
@@ -31,3 +31,5 @@ export const Header = async () => {
     </header>
   );
 };
+
+

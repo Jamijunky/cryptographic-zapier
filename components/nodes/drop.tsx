@@ -125,3 +125,5 @@ export const DropNode = ({ data, id }: DropNodeProps) => {
     </div>
   );
 };
+
+

@@ -291,3 +291,5 @@ export class TransformAdapter extends BaseProviderAdapter {
 
 // Export singleton instance
 export const transformAdapter = new TransformAdapter();
+
+

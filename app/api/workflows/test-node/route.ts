@@ -64,7 +64,10 @@ export async function POST(request: Request) {
 
     let providerCredential = userCredentials.find(c => c.provider === mapping.provider);
 
-    if (!providerCredential && mapping.provider !== "transform" && mapping.provider !== "webhook" && mapping.provider !== "flow") {
+    // Allow providers that can use env keys or don't need credentials
+    // postgres uses connection string from node data, not stored credentials
+    const envKeyProviders = ["openai", "transform", "webhook", "flow", "postgres"];
+    if (!providerCredential && !envKeyProviders.includes(mapping.provider)) {
       return NextResponse.json({
         success: false,
         error: `No credentials found for ${mapping.provider}. Please connect your account first.`,
@@ -152,3 +155,5 @@ export async function POST(request: Request) {
     );
   }
 }
+
+

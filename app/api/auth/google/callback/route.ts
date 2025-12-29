@@ -31,7 +31,8 @@ export async function GET(request: Request) {
     }
   }
 
-  const origin = new URL(request.url).origin;
+  // Use NEXT_PUBLIC_APP_URL if available (for tunnels/proxies), otherwise use request origin
+  const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(request.url).origin;
 
   if (error) {
     return NextResponse.redirect(
@@ -149,3 +150,5 @@ export async function GET(request: Request) {
     );
   }
 }
+
+

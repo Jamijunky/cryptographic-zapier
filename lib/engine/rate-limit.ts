@@ -51,6 +51,16 @@ export const DEFAULT_RATE_LIMITS: Record<ProviderId, RateLimitConfig> = {
     windowMs: 60000,
     retryAfterMs: 100,
   },
+  alchemy: {
+    maxRequests: 100,
+    windowMs: 60000,
+    retryAfterMs: 5000,
+  },
+  postgres: {
+    maxRequests: 100,
+    windowMs: 60000,
+    retryAfterMs: 1000,
+  },
 };
 
 /**
@@ -329,3 +339,5 @@ function isExecutionError(error: unknown): error is ExecutionError {
     "retryable" in error
   );
 }
+
+

@@ -18,3 +18,5 @@ export const serif = Cormorant_Upright({
   weight: ["600"],
   display: "swap",
 });
+
+

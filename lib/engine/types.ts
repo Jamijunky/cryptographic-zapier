@@ -1,5 +1,5 @@
 /**
- * Core Engine Types for Mini-Zapier Automation Platform
+ * Core Engine Types for Zynthex - AI Automation for Crypto Payments
  * 
  * This file defines the foundational types for the operation-based execution engine.
  * All node types are declarative schemas - execution logic lives in provider adapters.
@@ -18,7 +18,10 @@ export type ProviderId =
   | "email"
   | "webhook"
   | "transform"
-  | "flow";
+  | "flow"
+  | "alchemy"
+  | "postgres"
+  | "coingate";
 
 /**
  * Operations available per provider
@@ -66,13 +69,27 @@ export type FlowOperation =
   | "flow.route"
   | "flow.filter";
 
+export type AlchemyOperation =
+  | "alchemy.watchAddress"
+  | "alchemy.getTransactions";
+
+export type PostgresOperation =
+  | "postgres.listTables"
+  | "postgres.getRows"
+  | "postgres.query"
+  | "postgres.insert"
+  | "postgres.update"
+  | "postgres.delete";
+
 export type OperationId = 
   | GoogleOperation 
   | OpenAIOperation 
   | EmailOperation 
   | WebhookOperation
   | TransformOperation
-  | FlowOperation;
+  | AlchemyOperation
+  | FlowOperation
+  | PostgresOperation;
 
 // ============================================================================
 // Credential Types
@@ -329,12 +346,14 @@ export type RetryConfig = {
 
 /**
  * Variable reference pattern: {{source.path.to.value}}
- * Sources: trigger, previous, nodes.{nodeId}, env, flow (iterator context)
+ * Sources: trigger, previous, nodes.{nodeId}, env, flow (iterator context), input (alias for nodeOutputs)
  */
-export type VariableSource = "trigger" | "previous" | "nodes" | "env" | "flow";
+export type VariableSource = "trigger" | "previous" | "nodes" | "env" | "flow" | "input";
 
 export type VariableReference = {
   source: VariableSource;
   path: string[];
   nodeId?: string; // For nodes.{nodeId} references
 };
+
+

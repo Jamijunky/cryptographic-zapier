@@ -40,3 +40,5 @@ export const NodeToolbar = ({ id, items }: NodeToolbarProps) => {
     </NodeToolbarRaw>
   );
 };
+
+

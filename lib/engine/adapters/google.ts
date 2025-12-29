@@ -676,3 +676,5 @@ export class GoogleAdapter extends BaseProviderAdapter {
 
 // Export singleton instance
 export const googleAdapter = new GoogleAdapter();
+
+

@@ -57,3 +57,5 @@ export const getAuthenticatedUser = async () => {
 
   return user;
 };
+
+

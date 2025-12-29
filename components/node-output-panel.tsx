@@ -207,3 +207,5 @@ export const NodeOutputPanel = ({ outputs, onClose }: NodeOutputPanelProps) => {
     </Panel>
   );
 };
+
+

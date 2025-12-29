@@ -62,13 +62,21 @@ export class OpenAIAdapter extends BaseProviderAdapter {
   }
   
   /**
-   * Get API key from credentials
+   * Get API key from credentials (with env fallback)
    */
   private getApiKey(credentials: Credentials): string {
-    if (credentials.type !== "api_key") {
-      throw createError("INVALID_CREDENTIALS", "OpenAI requires API key credentials");
+    // First try environment variable
+    const envKey = process.env.OPENAI_API_KEY;
+    if (envKey) {
+      return envKey;
     }
-    return (credentials as ApiKeyCredentials).apiKey;
+    
+    // Then try credentials
+    if (credentials?.type === "api_key") {
+      return (credentials as ApiKeyCredentials).apiKey;
+    }
+    
+    throw createError("INVALID_CREDENTIALS", "OpenAI requires API key - set OPENAI_API_KEY in environment");
   }
   
   // ============================================================================
@@ -417,3 +425,5 @@ export class OpenAIAdapter extends BaseProviderAdapter {
 
 // Export singleton instance
 export const openaiAdapter = new OpenAIAdapter();
+
+

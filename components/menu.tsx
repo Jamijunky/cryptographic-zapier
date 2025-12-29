@@ -88,7 +88,7 @@ export const Menu = () => {
           <DropdownMenuItem asChild>
             <a
               className="flex items-center justify-between"
-              href="https://github.com/veriflow/veriflow"
+              href="https://github.com/zynthex/zynthex"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -103,3 +103,5 @@ export const Menu = () => {
     </>
   );
 };
+
+

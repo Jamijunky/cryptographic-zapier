@@ -20,10 +20,11 @@ import {
 import { BoxSelectIcon, PlusIcon } from "lucide-react";
 import { nanoid } from "nanoid";
 import type { MouseEvent, MouseEventHandler } from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDebouncedCallback } from "use-debounce";
 import { updateWorkflowAction } from "@/app/actions/workflow/update";
+import { getWorkflowAction } from "@/app/actions/workflow/get";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { useSaveProject } from "@/hooks/use-save-project";
 import { handleError } from "@/lib/error/handle";
@@ -34,7 +35,7 @@ import { useWorkflow } from "@/providers/workflow";
 import { ConnectionLine } from "./connection-line";
 import { edgeTypes } from "./edges";
 import { nodeTypes } from "./nodes";
-import { NodeOutputPanel } from "./node-output-panel";
+import { NodeEditorPanel } from "./nodes/node-editor-panel";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -44,7 +45,8 @@ import {
 
 export const Canvas = ({ children, ...props }: ReactFlowProps) => {
   const workflow = useWorkflow();
-  const { outputs } = useNodeOutputs();
+  const { outputs, addOutput } = useNodeOutputs();
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const {
     onConnect,
     onEdgesChange,
@@ -71,6 +73,73 @@ export const Canvas = ({ children, ...props }: ReactFlowProps) => {
   } = useReactFlow();
   const analytics = useAnalytics();
   const [saveState, setSaveState] = useSaveProject();
+
+  // Poll for updates when watch nodes are active
+  useEffect(() => {
+    const hasActiveWatchNode = nodes.some(
+      (n) => 
+        (n.type === "phantomWatch" || n.type === "metamaskWatch") && 
+        n.data?.webhookStatus === "active"
+    );
+
+    if (!hasActiveWatchNode || !workflow?.id) return;
+
+    console.log("🔄 Starting workflow polling (active watch node detected)");
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const result = await getWorkflowAction(workflow.id);
+        if ("workflow" in result && result.workflow.content) {
+          const newContent = result.workflow.content as { nodes: Node[]; edges: Edge[] };
+          
+          // Collect outputs to add after state update
+          const outputsToAdd: Array<{ nodeId: string; nodeType: string; output: any }> = [];
+          let hasChanges = false;
+          
+          // Update nodes that have new output data
+          setNodes((currentNodes) => {
+            return currentNodes.map((node) => {
+              const updatedNode = newContent.nodes.find((n) => n.id === node.id);
+              if (updatedNode?.data?.lastOutput) {
+                const currentOutput = JSON.stringify(node.data?.lastOutput);
+                const newOutput = JSON.stringify(updatedNode.data.lastOutput);
+                
+                if (currentOutput !== newOutput) {
+                  console.log(`📥 New output detected for node ${node.id}`);
+                  hasChanges = true;
+                  // Queue output to add (don't call addOutput inside setState)
+                  outputsToAdd.push({
+                    nodeId: node.id,
+                    nodeType: node.type || "",
+                    output: updatedNode.data.lastOutput,
+                  });
+                  return { ...node, data: { ...node.data, ...updatedNode.data } };
+                }
+              }
+              return node;
+            });
+          });
+          
+          // Add outputs after setState completes
+          if (outputsToAdd.length > 0) {
+            setTimeout(() => {
+              outputsToAdd.forEach(({ nodeId, nodeType, output }) => {
+                console.log(`✅ Adding output for ${nodeId}:`, output);
+                addOutput(nodeId, nodeType, output);
+              });
+            }, 0);
+          }
+        }
+      } catch (error) {
+        console.error("Error polling workflow:", error);
+      }
+    }, 2000); // Poll every 2 seconds
+
+    return () => {
+      console.log("🛑 Stopping workflow polling");
+      clearInterval(pollInterval);
+    };
+  }, [nodes, workflow?.id, addOutput]);
 
   const save = useDebouncedCallback(async () => {
     if (saveState.isSaving || !workflow?.userId || !workflow?.id) {
@@ -410,6 +479,8 @@ export const Canvas = ({ children, ...props }: ReactFlowProps) => {
               onDoubleClick={addDropNode}
               onEdgesChange={handleEdgesChange}
               onNodesChange={handleNodesChange}
+              onNodeClick={(_, node) => setSelectedNodeId(node.id)}
+              onPaneClick={() => setSelectedNodeId(null)}
               panOnDrag={false}
               panOnScroll
               selectionOnDrag={true}
@@ -417,7 +488,6 @@ export const Canvas = ({ children, ...props }: ReactFlowProps) => {
               {...restProps}
             >
               <Background />
-              <NodeOutputPanel outputs={outputs} />
               {children}
             </ReactFlow>
           </ContextMenuTrigger>
@@ -432,7 +502,14 @@ export const Canvas = ({ children, ...props }: ReactFlowProps) => {
             </ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
+        {/* n8n-style full-screen editor panel */}
+        <NodeEditorPanel
+          nodeId={selectedNodeId}
+          onClose={() => setSelectedNodeId(null)}
+        />
       </NodeDropzoneProvider>
     </NodeOperationsProvider>
   );
 };
+
+

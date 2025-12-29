@@ -43,6 +43,107 @@ export const triggerSchema: NodeSchema = {
 };
 
 // ============================================================================
+// CoinGate Nodes
+// ============================================================================
+
+export const coingateWebhookSchema: NodeSchema = {
+  type: "coingateWebhook",
+  provider: "coingate",
+  operation: "payment.webhook",
+  name: "CoinGate Payment",
+  description: "Trigger workflow when crypto payment is received via CoinGate",
+  icon: "/icons/coingate-logo.webp",
+  color: "green",
+  category: "trigger",
+  inputs: [
+    {
+      key: "apiKey",
+      label: "CoinGate API Key",
+      type: "password",
+      required: true,
+      placeholder: "Your CoinGate API Key",
+      description: "Get your API key from CoinGate dashboard",
+    },
+    {
+      key: "orderId",
+      label: "Order ID (Optional)",
+      type: "string",
+      required: false,
+      placeholder: "order_123",
+      description: "Custom order identifier",
+      supportsVariables: true,
+    },
+    {
+      key: "priceAmount",
+      label: "Price Amount",
+      type: "number",
+      required: true,
+      placeholder: "20",
+      description: "Amount to charge",
+      supportsVariables: true,
+    },
+    {
+      key: "priceCurrency",
+      label: "Price Currency",
+      type: "select",
+      required: true,
+      default: "USD",
+      options: [
+        { value: "USD", label: "USD" },
+        { value: "EUR", label: "EUR" },
+        { value: "GBP", label: "GBP" },
+        { value: "BTC", label: "BTC" },
+        { value: "ETH", label: "ETH" },
+      ],
+    },
+    {
+      key: "receiveCurrency",
+      label: "Receive Currency",
+      type: "select",
+      required: true,
+      default: "BTC",
+      options: [
+        { value: "BTC", label: "Bitcoin (BTC)" },
+        { value: "ETH", label: "Ethereum (ETH)" },
+        { value: "USDT", label: "Tether (USDT)" },
+        { value: "LTC", label: "Litecoin (LTC)" },
+      ],
+      description: "Cryptocurrency you want to receive",
+    },
+    {
+      key: "successUrl",
+      label: "Success URL",
+      type: "string",
+      required: false,
+      placeholder: "https://your-app.com/success",
+      description: "Redirect URL after successful payment",
+      supportsVariables: true,
+    },
+    {
+      key: "cancelUrl",
+      label: "Cancel URL",
+      type: "string",
+      required: false,
+      placeholder: "https://your-app.com/cancel",
+      description: "Redirect URL if payment is cancelled",
+      supportsVariables: true,
+    },
+  ],
+  outputs: [
+    { key: "id", label: "CoinGate Order ID", type: "string" },
+    { key: "orderId", label: "Your Order ID", type: "string" },
+    { key: "status", label: "Payment Status", type: "string" },
+    { key: "priceAmount", label: "Price Amount", type: "number" },
+    { key: "priceCurrency", label: "Price Currency", type: "string" },
+    { key: "receiveAmount", label: "Receive Amount", type: "number" },
+    { key: "receiveCurrency", label: "Receive Currency", type: "string" },
+    { key: "paymentUrl", label: "Payment URL", type: "string" },
+    { key: "paymentAddress", label: "Payment Address", type: "string" },
+    { key: "token", label: "Payment Token", type: "string" },
+  ],
+};
+
+// ============================================================================
 // OpenAI Nodes
 // ============================================================================
 
@@ -963,6 +1064,8 @@ export const flowSchema: NodeSchema = {
 
 export const nodeSchemas: Record<string, NodeSchema> = {
   trigger: triggerSchema,
+  coingateWebhook: coingateWebhookSchema,
+  coingate: coingateWebhookSchema,
   openai: openaiChatSchema,
   openaiChat: openaiChatSchema,
   openaiImage: openaiImageSchema,
@@ -1006,3 +1109,5 @@ export function getAllNodeSchemas(): NodeSchema[] {
 export function getNodeSchemasByCategory(category: NodeSchema["category"]): NodeSchema[] {
   return Object.values(nodeSchemas).filter(schema => schema.category === category);
 }
+
+

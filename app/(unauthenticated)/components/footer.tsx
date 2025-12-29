@@ -37,11 +37,11 @@ export const Footer = () => (
       {/* Main content */}
       <div className="flex flex-col items-center justify-center px-5 py-16">
         <h2 className="mb-5 text-center font-medium text-3xl tracking-[-0.12rem] md:text-5xl">
-          Get started <LocalTime />
+          Automate crypto payments <LocalTime />
         </h2>
 
         <p className="max-w-2xl text-center text-lg text-muted-foreground tracking-[-0.01rem]">
-          Get started for free and start creating your own AI workflows.
+          Start automating your crypto payment workflows with AI. Monitor wallets, process transactions, send notifications.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -67,3 +67,5 @@ export const Footer = () => (
     <div className="" />
   </div>
 );
+
+

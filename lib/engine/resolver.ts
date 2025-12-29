@@ -111,6 +111,15 @@ const nodeTypeRegistry: Map<string, NodeTypeMapping> = new Map([
   
   // HTTP nodes
   ["httpRequest", { type: "httpRequest", provider: "webhook", operation: "request" }],
+  
+  // PostgreSQL nodes
+  ["postgres", { type: "postgres", provider: "postgres", operation: "postgres.query" as OperationId }],
+  ["postgresQuery", { type: "postgresQuery", provider: "postgres", operation: "postgres.query" as OperationId }],
+  ["postgresGetRows", { type: "postgresGetRows", provider: "postgres", operation: "postgres.getRows" as OperationId }],
+  ["postgresListTables", { type: "postgresListTables", provider: "postgres", operation: "postgres.listTables" as OperationId }],
+  ["postgresInsert", { type: "postgresInsert", provider: "postgres", operation: "postgres.insert" as OperationId }],
+  ["postgresUpdate", { type: "postgresUpdate", provider: "postgres", operation: "postgres.update" as OperationId }],
+  ["postgresDelete", { type: "postgresDelete", provider: "postgres", operation: "postgres.delete" as OperationId }],
 ]);
 
 /**
@@ -658,3 +667,5 @@ export async function executeWorkflow(
   const resolver = createWorkflowResolver(userId, workflowId);
   return resolver.execute(content, triggerInput);
 }
+
+

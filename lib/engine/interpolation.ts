@@ -98,6 +98,34 @@ export function resolveVariable(
     case "trigger":
       return resolvePathValue(context.triggerInput, ref.path);
     
+    case "input": {
+      // "input" is an alias that resolves from nodeOutputs
+      // {{input.nodeId.field}} -> get nodeId's output, then field
+      // {{input.field}} -> get from triggerInput or first nodeOutput
+      if (ref.path.length === 0) {
+        // Return all available inputs
+        const inputs: Record<string, unknown> = { ...context.triggerInput };
+        for (const [nodeId, result] of context.nodeOutputs) {
+          if (result.success) {
+            inputs[nodeId] = result.output;
+          }
+        }
+        return inputs;
+      }
+      
+      const firstPathPart = ref.path[0];
+      
+      // Check if first part is a nodeId
+      if (context.nodeOutputs.has(firstPathPart)) {
+        const nodeResult = context.nodeOutputs.get(firstPathPart);
+        if (!nodeResult?.success) return undefined;
+        return resolvePathValue(nodeResult.output, ref.path.slice(1));
+      }
+      
+      // Otherwise, try triggerInput
+      return resolvePathValue(context.triggerInput, ref.path);
+    }
+    
     case "previous": {
       // Get the most recent node output
       const outputs = Array.from(context.nodeOutputs.values());
@@ -284,3 +312,5 @@ export function validateVariables(
   
   return { valid: missing.length === 0, missing };
 }
+
+

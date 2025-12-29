@@ -222,3 +222,5 @@ export class EmailAdapter extends BaseProviderAdapter {
 
 // Export singleton instance
 export const emailAdapter = new EmailAdapter();
+
+

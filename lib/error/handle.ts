@@ -6,3 +6,5 @@ export const handleError = (title: string, error: unknown) => {
 
   toast.error(title, { description });
 };
+
+

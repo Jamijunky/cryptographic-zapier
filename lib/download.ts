@@ -17,7 +17,7 @@ export const download = (
 
   const link = document.createElement("a");
   const extension = data.type.split("/").at(-1) ?? defaultExtension;
-  const filename = `veriflow-${id}.${extension}`;
+  const filename = `zynthex-${id}.${extension}`;
 
   // Create a blob URL from the data URL
   fetch(data.url)
@@ -35,3 +35,5 @@ export const download = (
       handleError("Error downloading file", error.message);
     });
 };
+
+

@@ -93,3 +93,5 @@ export const TriggerNode = ({ id, data, type }: TriggerNodeProps) => {
     </NodeLayout>
   );
 };
+
+

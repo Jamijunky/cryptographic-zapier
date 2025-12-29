@@ -7,6 +7,9 @@ import {
   TableIcon,
   WebhookIcon,
   WrenchIcon,
+  WalletIcon,
+  DatabaseIcon,
+  CoinsIcon,
 } from "lucide-react";
 
 export const nodeButtons = [
@@ -14,6 +17,31 @@ export const nodeButtons = [
     id: "trigger",
     label: "Trigger (Webhook)",
     icon: WebhookIcon,
+  },
+  {
+    id: "coingateWebhook",
+    label: "CoinGate Payment",
+    icon: CoinsIcon,
+    data: {
+      priceCurrency: "USD",
+      receiveCurrency: "BTC",
+    },
+  },
+  {
+    id: "metamaskWatch",
+    label: "MetaMask Watch",
+    icon: WalletIcon,
+    data: {
+      network: "ETH_GOERLI",
+    },
+  },
+  {
+    id: "phantomWatch",
+    label: "Phantom Watch",
+    icon: WalletIcon,
+    data: {
+      network: "SOLANA_DEVNET",
+    },
   },
   {
     id: "openai",
@@ -29,6 +57,14 @@ export const nodeButtons = [
     icon: MailOpenIcon,
     data: {
       operation: "gmail.send",
+    },
+  },
+  {
+    id: "postgres",
+    label: "PostgreSQL",
+    icon: DatabaseIcon,
+    data: {
+      operation: "postgres.query",
     },
   },
   {
@@ -69,3 +105,5 @@ export const nodeButtons = [
     icon: MailIcon,
   },
 ];
+
+

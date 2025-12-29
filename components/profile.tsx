@@ -150,3 +150,5 @@ export const Profile = ({ open, setOpen }: ProfileProps) => {
     </Dialog>
   );
 };
+
+

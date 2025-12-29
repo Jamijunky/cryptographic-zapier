@@ -8,3 +8,5 @@ export const metadata = {
 const ForgotPasswordPage = () => <ForgotPasswordForm />;
 
 export default ForgotPasswordPage;
+
+

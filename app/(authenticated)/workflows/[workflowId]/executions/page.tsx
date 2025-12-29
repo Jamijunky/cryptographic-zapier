@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, CheckCircle2Icon, XCircleIcon, ClockIcon } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Execution History - Mini-Zapier",
+  title: "Execution History - Zynthex",
   description: "View workflow execution history",
 };
 

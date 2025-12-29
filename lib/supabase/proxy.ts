@@ -77,3 +77,5 @@ export const updateSession = async (request: NextRequest) => {
 
   return supabaseResponse;
 };
+
+

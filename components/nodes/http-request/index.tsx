@@ -149,3 +149,5 @@ export const HttpRequestNode = ({ id, data, type }: HttpRequestNodeProps) => {
     </NodeLayout>
   );
 };
+
+

@@ -29,3 +29,5 @@ const AuthenticatedLayout = async ({ children }: AuthenticatedLayoutProps) => {
 };
 
 export default AuthenticatedLayout;
+
+

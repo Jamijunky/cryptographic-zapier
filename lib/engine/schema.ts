@@ -40,3 +40,5 @@ export const credentials = pgTable("credential", {
 
 export type CredentialRow = typeof credentials.$inferSelect;
 export type NewCredentialRow = typeof credentials.$inferInsert;
+
+
