@@ -1,3 +1,10 @@
+## Documentation
+
+- [Business Plan](docs/BUSINESS_PLAN.md)
+- [Contributions](docs/Contributions.md)
+- [Research Notes](docs/research-notes.md)
+- [Teamwork for project](docs/Teamwork%20for%20project.md)
+
 <div align="center">
   <img
     src="https://github.com/user-attachments/assets/8a5fa763-6fd4-4dc3-949f-ad37b70f93c1"
