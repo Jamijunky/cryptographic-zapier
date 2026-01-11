@@ -15,6 +15,88 @@ Zynthex lets users connect **crypto wallets, payment gateways, and APIs** and au
 
 At its core, Zynthex is a **node-based, no-code automation engine** designed to be powerful yet deeply intuitive. Users simply plug in a wallet address, connect services like Gmail, Docs, Sheets, databases, CRMs, or custom APIs, deploy the workflow, and **watch real-world and on-chain events drive their business automatically**—without writing a single line of code.
 
+## Overall Diagramatic overview.
+
+```mermaid
+
+flowchart LR
+    %% Core narrative
+    P[Problem: Payments Have No Follow-Through] --> Z[Zynthex: Payment-Driven Operations]
+
+    %% Stage 1
+    Z --> S1[Stage 1: ~100 Users]
+    S1 --> S1A[Early builders & indie teams]
+    S1 --> S1B[Clear pain validation]
+    S1 --> S1C[Manual + semi-automated workflows]
+    S1 --> S1D[Founder-led onboarding & feedback]
+    S1 --> S1E[Multi-chain hackathons]
+    S1E --> S1F[Grants & prize funding]
+    S1F --> S1G[Initial runway + credibility]
+
+    %% Stage 2
+    S1 --> S2[Stage 2: ~1,000 Users]
+    S2 --> S2A[Self-serve adoption]
+    S2 --> S2B[Workflow templates as growth loop]
+    S2 --> S2C[Agencies & small teams]
+    S2 --> S2D[Usage-based revenue]
+
+    %% Stage 3
+    S2 --> S3[Stage 3: ~10,000 Users]
+    S3 --> S3A[Teams running ops on autopilot]
+    S3 --> S3B[High-volume payment workflows]
+    S3 --> S3C[Operational dependency on Zynthex]
+    S3 --> S3D[Strong MRR + retention]
+
+    %% Industry Standard
+    S3 --> S4[Industry Standard]
+    S4 --> S4A[DAOs, SaaS, Marketplaces]
+    S4 --> S4B[Payments as business triggers]
+    S4 --> S4C[Compliance & audit-friendly ops]
+    S4 --> S4D[Zynthex = default execution layer]
+
+```
+
+```mermaid
+flowchart LR
+    %% Core Revenue Narrative
+    A[Zynthex Users] --> B[Workflow Usage]
+    B --> C[Value Creation]
+    C --> D[Revenue]
+
+    %% Stage 1: Early
+    D --> S1[Stage 1: ~100 Users]
+    S1 --> S1A[Free + Early Paid]
+    S1A --> S1B[Hackathon grants]
+    S1B --> S1C[$0–2k MRR]
+    S1C --> S1D[Problem–solution fit]
+    S1D --> S1E[Runway via grants + founder capital]
+
+    %% Stage 2: Validation
+    S1 --> S2[Stage 2: ~1,000 Users]
+    S2 --> S2A[Starter & Pro plans]
+    S2A --> S2B[Usage-based pricing]
+    S2B --> S2C[$20–40 ARPU]
+    S2C --> S2D[$20k–40k MRR]
+    S2D --> S2E[Cash-flow positive core ops]
+
+    %% Stage 3: Scale
+    S2 --> S3[Stage 3: ~10,000 Users]
+    S3 --> S3A[Teams + Business plans]
+    S3A --> S3B[High-frequency workflows]
+    S3B --> S3C[$40–80 ARPU]
+    S3C --> S3D[$400k–800k MRR]
+    S3D --> S3E[Strong retention + expansion revenue]
+
+    %% Industry Standard
+    S3 --> S4[Industry Standard Scale]
+    S4 --> S4A[Enterprise & custom contracts]
+    S4A --> S4B[DAO payroll, SaaS, marketplaces]
+    S4B --> S4C[Volume-based + enterprise pricing]
+    S4C --> S4D[$5M+ ARR]
+    S4D --> S4E[Zynthex as default payment execution layer]
+
+```
+
 Zynthex is built for **scale and versatility**. It serves everyone from individual freelancers and crypto traders to Web3 agencies and large enterprises—such as NFT marketplaces accepting multi-chain payments, DAOs managing contributor payouts, and businesses operating across **Solana, Polygon, and Ethereum**. Whether you're handling one payment a day or millions in transaction volume, Zynthex adapts effortlessly.
 What truly sets Zynthex apart is its **unmatched simplicity combined with enterprise-grade power**. No existing platform offers this level of ease while supporting crypto-native workflows, deep integrations, and real-time automation. Zynthex doesn’t just connect tools—it **turns crypto payments into fully automated business operations**.
 
@@ -31,6 +113,20 @@ It is:
 - **Low-code / no-code**
 - **Usable by non-developers**
 - **Powerful enough for developers**
+
+---
+
+### Some previous research on crypto payment markets:
+
+https://www.credenceresearch.com/report/crypto-payment-gateways-market
+
+https://www.fortunebusinessinsights.com/industry-reports/blockchain-market-100072
+
+https://www.polarismarketresearch.com/industry-analysis/cryptocurrency-payment-solutions-market
+
+https://www.globalinsightservices.com/reports/bitcoin-payment-ecosystem-market/
+
+https://www.globalinsightservices.com/reports/bitcoin-payment-ecosystem-market/
 
 ---
 
