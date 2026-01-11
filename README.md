@@ -1,10 +1,5 @@
 ## Documentation
 
-- [Business Plan](docs/BUSINESS_PLAN.md)
-- [Contributions](docs/Contributions.md)
-- [Research Notes](docs/research-notes.md)
-- [Teamwork for project](docs/Teamwork%20for%20project.md)
-
 <div align="center">
   <img
     src="https://github.com/user-attachments/assets/8a5fa763-6fd4-4dc3-949f-ad37b70f93c1"
@@ -18,11 +13,43 @@ Introduction
 
 Zynthex is an **AI-powered automation platform for crypto payments**, designed for teams and businesses that need **reliable, verifiable, and auditable payment workflows**.
 
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+  <img
+    src="https://github.com/user-attachments/assets/1a6e7d69-4fb5-4985-9758-4b7754ca3f20"
+    alt="example-flow"
+    width="48%"
+  />
+  <img
+    src="https://github.com/user-attachments/assets/7caf70e7-e2ff-4e2c-85a5-5c1678a91e57"
+    alt="deployable-crypto-automation"
+    width="48%"
+  />
+</div>
+
 The platform enables users to build intelligent, multi-step automations around crypto transactions using a **visual workflow system**, seamlessly integrating wallets, blockchains, and external services. Zynthex securely manages credentials and applies AI-driven logic to process, validate, and route payment data in real time.
 
 To ensure trust at scale, Zynthex leverages the **Solana blockchain** to create an **immutable audit trail** for critical activities—such as payment events, workflow executions, and collaborative changes. With **organization-based workspaces**, **version-controlled workflows**, and built-in governance, Zynthex allows teams to operate crypto payment automation with **full transparency, accountability, and confidence**.
 
+
+<div align="center">
+  <img
+    src="https://github.com/user-attachments/assets/9b60f685-8a58-4e1e-ba71-8762084923e6"
+    alt="zynthex"
+    width="800"
+  />
+</div>
+
+source: https://www.polarismarketresearch.com/industry-analysis/cryptocurrency-payment-solutions-market
+
+
 Zynthex provides you the **ultimate platform for automating visual workflows for crypto payments** by using drag and drop/connect nodes on a canvas.
+
+---
+
+- [Business Plan](docs/BUSINESS_PLAN.md)
+- [Contributions](docs/Contributions.md)
+- [Research Notes](docs/research-notes.md)
+- [Teamwork for project](docs/Teamwork%20for%20project.md)
 
 ---
 
