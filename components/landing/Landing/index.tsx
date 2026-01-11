@@ -2,7 +2,7 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const slideUp = {
   initial: { y: 300 },

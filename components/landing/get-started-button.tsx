@@ -2,7 +2,7 @@
 
 import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 

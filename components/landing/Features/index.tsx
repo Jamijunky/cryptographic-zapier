@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Wallet, Workflow, Plug, ShieldCheck, Zap, Globe, Link2, Bot, Coins, FileCode, Search } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import Image from "next/image";
